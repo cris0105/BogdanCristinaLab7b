@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace BogdanCristinaLab7.Models
 {
-    public class ShopList
+    public class ListProduct
     {
-        internal object ID;
-
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        [MaxLength(250), Unique]
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
+
+        [ForeignKey(typeof(ShopList))]
+        public int ShopListId { get; set; }
+        public int ProductId { get; set; }
     }
 }
-
