@@ -41,4 +41,29 @@ async void OnSaveButtonClicked(object sender, EventArgs e)
         var shopl = (ShopList)BindingContext;
         listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.Id);
     }
+    async void OnDeleteProductButtonClicked(object sender, EventArgs e)
+    {
+        if (listView.SelectedItem != null)
+        {
+            var listProduct = listView.SelectedItem as ListProduct;
+            if (listProduct != null)
+            {
+                bool confirm = await DisplayAlert("Confirm", "Are you sure you want to delete this item?", "Yes", "No");
+                if (confirm)
+                {
+                    await App.Database.DeleteProductAsync(listProduct);
+                    var shopl = (ShopList)BindingContext;
+                    listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.Id);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "No product selected.", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Error", "No product selected.", "OK");
+        }
+    }
 }

@@ -79,5 +79,9 @@ namespace BogdanCristinaLab7.Data
                 + " on P.ID = LP.ProductID where LP.ShopListID = ?", shoplistid);
         }
 
+        internal async Task DeleteProductAsync(ListProduct listProduct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
