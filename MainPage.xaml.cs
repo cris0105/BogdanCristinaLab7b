@@ -1,4 +1,6 @@
-﻿namespace BogdanCristinaLab7
+﻿using BogdanCristinaLab7.Data;
+
+namespace BogdanCristinaLab7
 {
     public partial class MainPage : ContentPage
     {
