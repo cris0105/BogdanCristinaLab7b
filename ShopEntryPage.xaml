@@ -13,7 +13,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding ShopName}"
-                      Detail="{Binding Address}" />
+                          Detail="{Binding Address}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

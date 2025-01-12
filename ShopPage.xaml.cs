@@ -9,7 +9,6 @@ public partial class ShopPage : ContentPage
     public ShopPage(Shop shop)
     {
         InitializeComponent();
-        BindingContext = shop;
     }
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
@@ -21,7 +20,6 @@ public partial class ShopPage : ContentPage
     {
         var shop = (Shop)BindingContext;
         var address = shop.Address;
-        Microsoft.Maui.Essentials.MapServiceToken = "AIzaSyDiAwCCMy3EFOoHPYrwQwnn-KM02qgyNok";
         var locations = await Geocoding.GetLocationsAsync(address);
 
         var options = new MapLaunchOptions { Name = "Magazinul meu preferat" };
