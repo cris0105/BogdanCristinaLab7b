@@ -10,14 +10,16 @@ namespace BogdanCristinaLab7;
 
 public partial class ListPage : ContentPage
 {
-	public ListPage()
-	{
-		InitializeComponent();
-	}
-async void OnSaveButtonClicked(object sender, EventArgs e)
+    public ListPage()
+    {
+        InitializeComponent();
+        BindingContext = new ShopList(); 
+    }
+    async void OnSaveButtonClicked(object sender, EventArgs e)
     {
         var slist = (ShopList)BindingContext;
-        slist.Date = DateTime.UtcNow;
+       slist.Date = DateTime.UtcNow;
+        Shop selectedShop = (ShopPicker.SelectedItem as Shop);
         await App.Database.SaveShopListAsync(slist);
         await Navigation.PopAsync();
     }
@@ -38,6 +40,9 @@ async void OnSaveButtonClicked(object sender, EventArgs e)
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+        var items = await App.Database.GetShopListsAsync();
+        ShopPicker.ItemsSource = items; 
+        ShopPicker.ItemDisplayBinding = new Binding("ShopName"); 
         var shopl = (ShopList)BindingContext;
         listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.Id);
     }
